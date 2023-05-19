@@ -1,6 +1,7 @@
 package com.codelabs.productservice.controller;
 
 import com.codelabs.productservice.dto.ProductDTO;
+import com.codelabs.productservice.dto.ProductList;
 import com.codelabs.productservice.model.Product;
 import com.codelabs.productservice.service.ProductService;
 import org.slf4j.Logger;
@@ -32,7 +33,9 @@ public class ProductController {
     }
 
     @GetMapping
-    public void getProduct() {
-
+    public ResponseEntity<ProductList> getProducts() {
+        logger.info("Received request to get all products");
+        ProductList productList = productService.getProducts();
+        return new ResponseEntity<ProductList>(productList, HttpStatus.OK);
     }
 }
